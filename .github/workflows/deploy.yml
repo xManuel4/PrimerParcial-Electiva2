@@ -13,21 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Change to project directory
-        run: cd PrimerParcial-Electiva2/PrimerParcial-Electiva2
-
       - name: Install dependencies
-        run: |
-          cd PrimerParcial-Electiva2/PrimerParcial-Electiva2
-          npm install
+        working-directory: PrimerParcial-Electiva2/PrimerParcial-Electiva2
+        run: npm install
 
       - name: Build application (opcional)
-        run: |
-          cd PrimerParcial-Electiva2/PrimerParcial-Electiva2
-          npm run build  # Si es necesario
+        working-directory: PrimerParcial-Electiva2/PrimerParcial-Electiva2
+        run: npm run build # Si es necesario
 
       - name: Deploy to Surge
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-        run: |
-          npx surge ./build manudls-pl.surge.sh --token $SURGE_TOKEN  # Ajusta si es necesario
+        working-directory: PrimerParcial-Electiva2/PrimerParcial-Electiva2
+        run: npx surge ./build manudls-pl.surge.sh --token $SURGE_TOKEN
