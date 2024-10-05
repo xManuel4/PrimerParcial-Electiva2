@@ -1,29 +1,20 @@
-name: Deploy to Surge
-
-on:
-  push:
-    branches:
-      - main
+name: Continuous Deployment
+on: [push]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install --prefix PrimerParcial-Electiva2
+      - run: echo "Setting up NodeJs"
+      - name: Setup NodeJs
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
 
-      - name: Build application (opcional)
-        run: npm run build --prefix PrimerParcial-Electiva2 # Si es necesario
+      - run: npm install -g surge
+      - run: echo "Deploying website"
+      - run: surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
 
-      - name: Deploy to Surge
-        env:
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-        run: |
-          npx surge ./ manudls-pl.surge.sh --token $SURGE_TOKEN  # Ajusta si es necesario
-
-      - name: Deployment URL
-        run: echo "Please visit => https://manudls-pl.surge.sh"
+      - run: echo "Please visit => https://manudls-pl.surge.sh"
