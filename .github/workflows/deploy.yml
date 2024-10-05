@@ -15,6 +15,6 @@ jobs:
 
       - run: npm install -g surge
       - run: echo "Deploying website"
-      - run: surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+      - run: surge ./ https://manudls-pl.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
       - run: echo "Please visit => https://manudls-pl.surge.sh"
