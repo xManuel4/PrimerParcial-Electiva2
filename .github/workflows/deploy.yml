@@ -22,7 +22,7 @@ jobs:
         run: npm install -g surge
 
       - name: Deploying website
-        run: surge ../PrimerParcial-Electiva2/PrimerParcial-Electiva2 https://manudls-pl.surge.sh --token ${{SURGE_TOKEN }}
+        run: surge ../PrimerParcial-Electiva2/PrimerParcial-Electiva2 https://manudls-pl.surge.sh --token ${{ secrets.SURGE_TOKEN }}
 
       - name: Deployment URL
         run: echo "Please visit => https://manudls-pl.surge.sh"
