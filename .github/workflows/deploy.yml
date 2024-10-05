@@ -23,4 +23,7 @@ jobs:
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
-          npx surge PrimerParcial-Electiva2/build manudls-pl.surge.sh --token $SURGE_TOKEN  # Ajusta si es necesario
+          npx surge ./ manudls-pl.surge.sh --token $SURGE_TOKEN  # Ajusta si es necesario
+
+      - name: Deployment URL
+        run: echo "Please visit => https://manudls-pl.surge.sh"
